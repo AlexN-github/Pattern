@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Контакты</title>
+</head>
+<body>
+    <h1>Контакты</h1>
+    <ul>
+        <li>
+            <a href="/">
+                Главная
+            </a>
+        </li>
+        <li>
+            <a href="/authors/">
+                Авторы
+            </a>
+        </li>
+        <li>
+            <a href="/contacts/">
+                Контакты
+            </a>
+        </li>
+        <li>
+            <a href="/about/">
+                О проекте
+            </a>
+        </li>
+    </ul>
+
+    <p>Вы можете отправить нам сообщение:</p>
+
+    <form action="/contacts/" method="post">
+        <label for="fname">Ваше имя:</label><br>
+        <input type="text" id="fname" name="fname" value="John"><br>
+        <label for="lname">Ваша фамилия:</label><br>
+        <input type="text" id="lname" name="lname" value="Doe"><br><br>
+        <label for="lname">Ваш EMAIL:</label><br>
+        <input type="text" id="email" name="email" value="example@domain.ru"><br><br>
+        <label for="lname">Сообщение:</label><br>
+        <textarea cols="60" rows="5" id="message" name="message" ></textarea>
+        <input type="submit" value="Отправить">
+    </form>
+
+    <p>
+        {{result_message}}
+    </p>
+
+    <h1>Параметры</h1>
+    <ul>
+        {% for param in params.items() %}
+            <li>{{param}}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
