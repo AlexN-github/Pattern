@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+
+    <h1>Параметры</h1>
+    <ul>
+        {% for param in context.params.items() %}
+            <li>{{param}}</li>
+        {% endfor %}
+    </ul>
+
+    {% endblock %}

@@ -1,33 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Контакты</title>
-</head>
-<body>
-    <h1>Контакты</h1>
-    <ul>
-        <li>
-            <a href="/">
-                Главная
-            </a>
-        </li>
-        <li>
-            <a href="/authors/">
-                Авторы
-            </a>
-        </li>
-        <li>
-            <a href="/contacts/">
-                Контакты
-            </a>
-        </li>
-        <li>
-            <a href="/about/">
-                О проекте
-            </a>
-        </li>
-    </ul>
+{% extends 'base.html' %}
+
+    {% block content %}
 
     <p>Вы можете отправить нам сообщение:</p>
 
@@ -44,15 +17,15 @@
     </form>
 
     <p>
-        {{result_message}}
+        {{context.result_message}}
     </p>
 
     <h1>Параметры</h1>
     <ul>
-        {% for param in params.items() %}
+        {% for param in context.params.items() %}
             <li>{{param}}</li>
         {% endfor %}
     </ul>
 
-</body>
-</html>
+
+    {% endblock %}
