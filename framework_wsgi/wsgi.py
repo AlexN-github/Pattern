@@ -22,7 +22,7 @@ class Application:
         code, body = view(params=params, method=method)
         # run page controller
         start_response(code, [('Content-Type', 'text/html')])
-        return body
+        return [body.encode('utf-8')]
 
     def get_parameters(self, environ):
         def convert_to_dict(data: str):
