@@ -1,7 +1,7 @@
 import datetime
 import json
 
-from logging_mod import logger
+from logging_mod import logger, debug
 from models import site
 from render import render
 
@@ -159,6 +159,7 @@ def authors_view(params, method):
     return '200 OK', render('authors.html', context=context)
 
 
+@debug
 def about_view(params, method):
     context = {
         'title': 'О проекте!!!',

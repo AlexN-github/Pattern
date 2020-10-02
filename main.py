@@ -1,4 +1,4 @@
-from framework_wsgi.wsgi import Application
+from framework_wsgi.wsgi import * #Application
 
 
 # Front controllers
@@ -21,3 +21,7 @@ def other_front(request):
 fronts = [secret_front, other_front]
 
 application = Application(urls, fronts)
+#application = FakeApplication(urls, fronts)
+
+#application = DebugApplication(urls, fronts)
+
