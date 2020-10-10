@@ -12,7 +12,7 @@ urls = {
     '/contacts/': contacts_view,
     '/list-student/': StudentListView(),
     '/create-student/': StudentCreateView(),
-#    '/add-student/': AddStudentByCourseCreateView(),
+    '/add-student/': AddStudentByCourseCreateView(),
     '/other/': Other(),
     '': not_found_404_view
 }

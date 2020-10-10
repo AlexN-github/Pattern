@@ -199,11 +199,13 @@ class StudentCreateView(CreateView):
 
 class AddStudentByCourseCreateView(CreateView):
     template_name = 'add_student.html'
+    title = 'Записать студента на курс'
 
     def get_context_data(self):
         context = super().get_context_data()
         context['courses'] = site.courses
         context['students'] = site.students
+        print('context = ', context)
         return context
 
     def create_obj(self, data: dict):

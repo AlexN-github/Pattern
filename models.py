@@ -58,10 +58,16 @@ class Course():
         self.name = name
         self.category = category
         self.category.courses.append(self)
+        self.students = []
+        super().__init__()
 
-    def clone(self):
-        """Clone a registered object and update inner attributes dictionary"""
-        return copy.deepcopy(self)
+    def __getitem__(self, item):
+        return self.students[item]
+
+    def add_student(self, student: Student):
+        self.students.append(student)
+        student.courses.append(self)
+        #self.notify()
 
 
 class InteractiveCourse(Course):
@@ -119,6 +125,11 @@ class TrainingSite:
             if item.name == name:
                 return item
         return None
+
+    def get_student(self, name) -> Student:
+        for item in self.students:
+            if item.name == name:
+                return item
 
 
 site = TrainingSite()
