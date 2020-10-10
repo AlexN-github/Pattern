@@ -3,7 +3,7 @@ import json
 
 from cbv import ListView, CreateView
 from logging_mod import logger, debug
-from models import site
+from models import site, BaseSerializer
 from render import render
 
 
@@ -214,3 +214,9 @@ class AddStudentByCourseCreateView(CreateView):
         student_name = data['student_name']
         student = site.get_student(student_name)
         course.add_student(student)
+
+
+def api_get_courses(params, method):
+    if method == 'GET':
+        return '200 OK', BaseSerializer(site.courses).save()
+

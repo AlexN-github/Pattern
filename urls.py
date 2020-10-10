@@ -13,6 +13,7 @@ urls = {
     '/list-student/': StudentListView(),
     '/create-student/': StudentCreateView(),
     '/add-student/': AddStudentByCourseCreateView(),
+    '/api/courses/': api_get_courses,
     '/other/': Other(),
     '': not_found_404_view
 }
