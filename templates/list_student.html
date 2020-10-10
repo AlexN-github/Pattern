@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+        {% for item in context.objects_list %}
+        <li>
+	        {{item.name}}
+        	{% for course in item.courses %}
+            		{{course.name}}
+	        {% endfor %}
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
