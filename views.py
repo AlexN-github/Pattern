@@ -1,6 +1,7 @@
 import datetime
 import json
 
+from cbv import ListView, CreateView
 from logging_mod import logger, debug
 from models import site
 from render import render
@@ -178,3 +179,36 @@ class Other:
         print(params)
         return '200 OK', '<h1>other</h1>'
 
+
+class StudentListView(ListView):
+    title = 'Список студентов'
+    queryset = site.students
+    template_name = 'list_student.html'
+
+
+class StudentCreateView(CreateView):
+    template_name = 'create_student.html'
+    title = 'Создать студента'
+
+    def create_obj(self, data: dict):
+        name = data['name']
+        print(name)
+        new_obj = site.create_user('student', name)
+        site.students.append(new_obj)
+
+
+class AddStudentByCourseCreateView(CreateView):
+    template_name = 'add_student.html'
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['courses'] = site.courses
+        context['students'] = site.students
+        return context
+
+    def create_obj(self, data: dict):
+        course_name = data['course_name']
+        course = site.get_course(course_name)
+        student_name = data['student_name']
+        student = site.get_student(student_name)
+        course.add_student(student)
