@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+
+    <p>Вы можете отправить нам сообщение:</p>
+
+    <form action="/contacts/" method="post">
+        <label for="fname">Ваше имя:</label><br>
+        <input type="text" id="fname" name="fname" value="John"><br>
+        <label for="lname">Ваша фамилия:</label><br>
+        <input type="text" id="lname" name="lname" value="Doe"><br><br>
+        <label for="lname">Ваш EMAIL:</label><br>
+        <input type="text" id="email" name="email" value="example@domain.ru"><br><br>
+        <label for="lname">Сообщение:</label><br>
+        <textarea cols="60" rows="5" id="message" name="message" ></textarea>
+        <input type="submit" value="Отправить">
+    </form>
+
+    <p>
+        {{context.result_message}}
+    </p>
+
+    <h1>Параметры</h1>
+    <ul>
+        {% for param in context.params.items() %}
+            <li>{{param}}</li>
+        {% endfor %}
+    </ul>
+
+
+    {% endblock %}

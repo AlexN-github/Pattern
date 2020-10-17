@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post">
+    <select size="3" name="course_name">
+        {% for item in context.courses %}
+        <option value="{{item.name}}">{{item.name}}</option>
+        {% endfor %}
+    </select>
+    <select size="3" name="student_name">
+        {% for item in context.students %}
+        <option value="{{item.name}}">{{item.name}}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Записать</button>
+</form>
+{% endblock %}

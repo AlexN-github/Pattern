@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+        {% for item in context.objects_list %}
+        <li>
+            {{item.name}} <span>Количество курсов: {{item.course_count()}}</span>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
