@@ -3,6 +3,9 @@ import copy
 
 import jsonpickle
 
+from patterns.observer import Observer
+from patterns.unitofwork import DomainObject
+
 
 class User:
     def __init__(self, name):
@@ -13,7 +16,7 @@ class Teacher(User):
     pass
 
 
-class Student(User):
+class Student(User, DomainObject):
     def __init__(self, name):
         self.courses = []
         super().__init__(name)
@@ -132,6 +135,18 @@ class TrainingSite:
         for item in self.students:
             if item.name == name:
                 return item
+
+
+class SmsNotifier(Observer):
+
+    def update(self, subject: Course):
+        print('SMS->', 'к нам присоединился', subject.students[-1].name)
+
+
+class EmailNotifier(Observer):
+
+    def update(self, subject: Course):
+        print(('EMAIL->', 'к нам присоединился', subject.students[-1].name))
 
 
 class BaseSerializer:

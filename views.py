@@ -3,7 +3,9 @@ import json
 
 from cbv import ListView, CreateView
 from logging_mod import logger, debug
+from mappers import MapperRegistry
 from models import site, BaseSerializer
+from patterns.unitofwork import UnitOfWork
 from render import render
 
 
@@ -182,8 +184,12 @@ class Other:
 
 class StudentListView(ListView):
     title = 'Список студентов'
-    queryset = site.students
+    #queryset = site.students
     template_name = 'list_student.html'
+
+    def get_queryset(self):
+        mapper = MapperRegistry.get_current_mapper('student')
+        return mapper.all()
 
 
 class StudentCreateView(CreateView):
@@ -195,6 +201,8 @@ class StudentCreateView(CreateView):
         print(name)
         new_obj = site.create_user('student', name)
         site.students.append(new_obj)
+        new_obj.mark_new()
+        UnitOfWork.get_current().commit()
 
 
 class AddStudentByCourseCreateView(CreateView):
@@ -220,3 +228,6 @@ def api_get_courses(params, method):
     if method == 'GET':
         return '200 OK', BaseSerializer(site.courses).save()
 
+
+UnitOfWork.new_current()
+UnitOfWork.get_current().set_mapper_registry(MapperRegistry)
